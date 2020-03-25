@@ -1,8 +1,12 @@
 import React from 'react';
 
+import './global.css';
+
+import Logon from './pages/Logon';
+
 function App() {
   return (
-    <h1>Semana Omnistack 11</h1>
+    <Logon />
   );
 }
 
