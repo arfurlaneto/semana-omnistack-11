@@ -6,7 +6,7 @@ An application to help nonprofit organizations to achieve their goals.
 ## Back-end
 ```
 npm install
-npx knex migration:latest
+npx knex migrate:latest --env development
 npm run start
 ```
 Back-end runs at port 3333.
