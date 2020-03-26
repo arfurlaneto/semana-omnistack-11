@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FiPower, FiTrash2 } from 'react-icons/fi';
+import { toast } from 'react-toastify';
 
 import api from '../../services/api';
 import './styles.css';
@@ -16,7 +17,7 @@ export default function Profile() {
   const ongName = localStorage.getItem('ongName');
 
   useEffect(() => {
-    api.get('/profile', {
+    api.get('/profiles', {
       headers: {
         Authorization: ongId,
       },
@@ -35,7 +36,7 @@ export default function Profile() {
 
       setIncidents(incidents.filter((i) => i.id !== id));
     } catch (err) {
-      alert('Erro ao deletar caso, tente novamente.');
+      toast.error('Erro ao deletar caso, tente novamente.');
     }
   }
 
