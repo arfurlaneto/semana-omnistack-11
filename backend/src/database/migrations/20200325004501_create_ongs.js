@@ -1,4 +1,3 @@
-
 exports.up = (knex) => knex.schema.createTable('ongs', (table) => {
   table.string('id').primary();
   table.string('name').notNullable();

@@ -1,17 +1,44 @@
+import * as Yup from 'yup';
 import crypto from 'crypto';
 import connection from '../database/connection';
 
 export default {
-  async index(request, response) {
-    const ongs = await await connection('ongs').select('*');
+  async index(req, res) {
+    const ongs = await connection('ongs').select('*');
 
-    return response.json(ongs);
+    return res.json(ongs);
   },
 
-  async create(request, response) {
+  async store(req, res) {
+    const schema = Yup.object().shape({
+      name: Yup.string()
+        .trim()
+        .required()
+        .max(200),
+      email: Yup.string()
+        .trim()
+        .required()
+        .max(200)
+        .email(),
+      whatsapp: Yup.string()
+        .trim()
+        .required()
+        .max(200),
+      city: Yup.string()
+        .trim()
+        .required()
+        .max(200),
+      uf: Yup.string()
+        .trim()
+        .required()
+        .max(2),
+    });
+
+    await schema.validate(req.body);
+
     const {
       name, email, whatsapp, city, uf,
-    } = request.body;
+    } = req.body;
 
     const id = crypto.randomBytes(4).toString('HEX');
 
@@ -19,6 +46,11 @@ export default {
       id, name, email, whatsapp, city, uf,
     });
 
-    return response.json({ id });
+    const ong = await connection('ongs')
+      .where('id', id)
+      .select('*')
+      .first();
+
+    return res.json(ong);
   },
 };
