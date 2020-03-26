@@ -2,6 +2,7 @@
 An application to help nonprofit organizations to achieve their goals.
 # Technologies Used
 - Node.js
+- React JS
 # Running
 ## Back-end
 ```
