@@ -1,4 +1,3 @@
-import * as Yup from 'yup';
 import connection from '../database/connection';
 
 export default {
@@ -26,22 +25,6 @@ export default {
   },
 
   async store(req, res) {
-    const schema = Yup.object().shape({
-      title: Yup.string()
-        .trim()
-        .required()
-        .max(200),
-      description: Yup.string()
-        .trim()
-        .required()
-        .max(200),
-      value: Yup
-        .number()
-        .required(),
-    });
-
-    await schema.validate(req.body);
-
     const {
       title, description, value,
     } = req.body;

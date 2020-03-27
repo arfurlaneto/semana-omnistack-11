@@ -1,4 +1,3 @@
-import * as Yup from 'yup';
 import crypto from 'crypto';
 import connection from '../database/connection';
 
@@ -10,32 +9,6 @@ export default {
   },
 
   async store(req, res) {
-    const schema = Yup.object().shape({
-      name: Yup.string()
-        .trim()
-        .required()
-        .max(200),
-      email: Yup.string()
-        .trim()
-        .required()
-        .max(200)
-        .email(),
-      whatsapp: Yup.string()
-        .trim()
-        .required()
-        .max(200),
-      city: Yup.string()
-        .trim()
-        .required()
-        .max(200),
-      uf: Yup.string()
-        .trim()
-        .required()
-        .max(2),
-    });
-
-    await schema.validate(req.body);
-
     const {
       name, email, whatsapp, city, uf,
     } = req.body;

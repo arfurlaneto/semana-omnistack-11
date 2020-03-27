@@ -1,17 +1,7 @@
-import * as Yup from 'yup';
 import connection from '../database/connection';
 
 export default {
   async store(req, res) {
-    const schema = Yup.object().shape({
-      id: Yup.string()
-        .trim()
-        .required()
-        .max(200),
-    });
-
-    await schema.validate(req.body);
-
     const { id } = req.body;
 
     const ong = await connection('ongs')
