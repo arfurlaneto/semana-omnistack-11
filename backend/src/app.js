@@ -15,4 +15,4 @@ app.use(routes);
 app.use(errors());
 app.use(errorHandler);
 
-app.listen(3333);
+export default app;
